@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-
+import { TokenService } from '../services/token.service';
 @Component({
   selector: 'app-tab1',
   templateUrl: 'tab1.page.html',
@@ -7,6 +7,10 @@ import { Component } from '@angular/core';
 })
 export class Tab1Page {
 
-  constructor() {}
+  constructor(private tokenService: TokenService,) {}
+
+  ngOnInit(){
+    this.tokenService.checkToken()
+  }
 
 }
