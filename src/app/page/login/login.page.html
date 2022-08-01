@@ -21,16 +21,43 @@
 
   <ion-grid style="height: 100%">
     <ion-row class="ion-align-items-center" style="height: 100%">
-      <form style="width: 100%">
+      <form style="width: 100%" [formGroup]="loginForm" (ngSubmit)="login()">
         <ion-item>
           <ion-label position="floating">Username</ion-label>
-          <ion-input type="text" required></ion-input>
+          <ion-input
+            type="text"
+            name="username"
+            required
+            formControlName="username"
+          ></ion-input>
         </ion-item>
+
+        <div *ngIf="username.touched && username.errors?.['required']">
+          Name is required.
+        </div>
 
         <ion-item>
           <ion-label position="floating">Password</ion-label>
-          <ion-input type="password" required></ion-input>
+          <ion-input
+            type="password"
+            name="password"
+            required
+            formControlName="password"
+          ></ion-input>
         </ion-item>
+
+        <div *ngIf="password.touched && password.errors?.['required']">
+          Password is required.
+        </div>
+
+        <ion-button
+          [disabled]="!loginForm.valid"
+          expand="block"
+          style="margin-top: 16px"
+          type="submit"
+        >
+          Login
+        </ion-button>
       </form>
     </ion-row>
   </ion-grid>

@@ -3,14 +3,14 @@ import { TokenService } from '../services/token.service';
 @Component({
   selector: 'app-tab1',
   templateUrl: 'tab1.page.html',
-  styleUrls: ['tab1.page.scss']
+  styleUrls: ['tab1.page.scss'],
 })
 export class Tab1Page {
+  constructor(private tokenService: TokenService) {}
 
-  constructor(private tokenService: TokenService,) {}
-
-  ngOnInit(){
-    this.tokenService.checkToken()
+  ngOnInit() {
+    if (this.tokenService.checkToken() === false) {
+      this.tokenService.clearToken();
+    }
   }
-
 }

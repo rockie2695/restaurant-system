@@ -7,12 +7,13 @@ import { Router } from '@angular/router';
 export class TokenService {
   constructor(private router: Router) {}
 
-  checkToken(): void {
+  checkToken(): boolean {
     let eToken = localStorage.getItem('t');
-    console.log(eToken)
+    console.log(eToken);
     if (eToken === null) {
-      this.clearToken();
+      return false;
     }
+    return true;
   }
 
   clearToken(): void {
