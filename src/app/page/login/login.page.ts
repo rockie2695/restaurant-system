@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { ToastController } from '@ionic/angular';
 import { Router } from '@angular/router';
+import { throwError } from 'rxjs';
 
 import { TokenService } from 'src/app/services/token.service';
 import { UserService } from 'src/app/services/user.service';
@@ -42,7 +43,7 @@ export class LoginPage implements OnInit {
 
     try {
       const response = await this.userService.loginUser(this.loginForm.value);
-      this.tokenService.saveToken(response.token);
+      this.tokenService.saveToken(response);
       this.router.navigate(['']);
     } catch (err) {
       if (err.status === 401) {
@@ -54,6 +55,8 @@ export class LoginPage implements OnInit {
         toast.present();
         return;
       }
+      console.log(err);
+      return throwError(err);
     }
   }
 
