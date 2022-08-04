@@ -7,28 +7,59 @@ import {
 import { catchError } from 'rxjs/operators';
 import { Observable, throwError } from 'rxjs';
 
+import { EncryptService } from './encrypt.service';
 import { TokenService } from './token.service';
 
 @Injectable({
   providedIn: 'root',
 })
 export class HttpService {
-  private host = 'http://arpa-api.arpainfinity.com:3000/api';
+  private host = 'http://localhost:3000';
   private httpOptions: any = {
     httpOptions: {
       headers: new HttpHeaders({
         'Content-Type': 'application/json',
       }),
     },
-    /*httpOptionsWithToken: {
+    httpOptionsWithToken: {
       headers: new HttpHeaders({
         'Content-Type': 'application/json',
-        Authorization: 'Bearer ' + this.tokenService.decryptToken(),
+        Authorization:
+          'Bearer ' +
+          (localStorage.getItem('token') === null
+            ? ''
+            : this.encryptService.decrypt(localStorage.getItem('token'))),
       }),
-    },*/
+    },
   };
 
-  constructor(private http: HttpClient, private tokenService: TokenService) {}
+  constructor(
+    private http: HttpClient,
+    private encryptService: EncryptService,
+    private tokenService: TokenService
+  ) {}
+
+  getRequest(uri?: string, queryString?: string): Observable<any> {
+    if (uri === undefined) {
+      uri = '';
+    }
+    if (queryString === undefined) {
+      queryString = '';
+    }
+
+    if (this.tokenService.checkToken()) {
+      return this.http
+        .get(
+          this.host + uri + '?' + queryString,
+          this.httpOptions.httpOptionsWithToken
+        )
+        .pipe(catchError(this.handleError));
+    } else {
+      return this.http
+        .get(this.host + uri + '?' + queryString, this.httpOptions.httpOptions)
+        .pipe(catchError(this.handleError));
+    }
+  }
 
   postRequest(uri?: string, data?: any): Observable<any> {
     /*if (this.tokenService.checkToken()) {
@@ -39,14 +70,13 @@ export class HttpService {
         .pipe(catchError(this.handleError));
     }*/
     //if (!this.tokenService.checkToken()) {
-      console.log(this.host + uri, data, this.httpOptions)
-      return this.http
-        .post(this.host + uri, data, this.httpOptions)
-        .pipe(catchError(this.handleError));
+    return this.http
+      .post(this.host + uri, data, this.httpOptions.httpOptions)
+      .pipe(catchError(this.handleError));
     //}
   }
 
   private handleError(error: HttpErrorResponse) {
-    return throwError(error.status);
+    return throwError(error);
   }
 }

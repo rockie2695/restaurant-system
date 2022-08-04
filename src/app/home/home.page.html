@@ -1,0 +1,61 @@
+<ion-header translucent>
+  <ion-toolbar>
+    <ion-title>home</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content fullscreen>
+  <ion-card color="light">
+    <div style="text-align: center">
+      <img
+        src="https://static.vecteezy.com/system/resources/previews/002/743/515/large_2x/set-of-plate-fork-and-knife-icon-free-vector.jpg"
+      />
+    </div>
+
+    <ion-card-header>
+      <!--<ion-card-subtitle>Card Subtitle</ion-card-subtitle>-->
+      <ion-card-title>{{username}}</ion-card-title>
+    </ion-card-header>
+
+    <ion-card-content>
+      Welcome to restaurant-system.
+      <br />
+      You can click to enter the following category.
+      <br />
+      If you have any question, please email to rockie2695@yahoo.com.hk
+    </ion-card-content>
+  </ion-card>
+
+  <ion-card>
+    <ion-item style="font-size: 28px" color="success" href="#">
+      <ion-icon
+        name="fast-food-outline"
+        slot="start"
+        style="font-size: 24px"
+      ></ion-icon>
+      <ion-label>餐飲</ion-label>
+    </ion-item>
+  </ion-card>
+
+  <ion-card>
+    <ion-item style="font-size: 28px" color="danger" href="#">
+      <ion-icon
+        name="grid-outline"
+        slot="start"
+        style="font-size: 24px"
+      ></ion-icon>
+      <ion-label>套餐</ion-label>
+    </ion-item>
+  </ion-card>
+
+  <ion-card>
+    <ion-item style="font-size: 28px" color="secondary" href="#">
+      <ion-icon
+        name="reorder-four-outline"
+        slot="start"
+        style="font-size: 24px"
+      ></ion-icon>
+      <ion-label>訂單</ion-label>
+    </ion-item>
+  </ion-card>
+</ion-content>

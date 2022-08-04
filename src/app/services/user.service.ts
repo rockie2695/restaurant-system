@@ -5,11 +5,15 @@ import { HttpService } from './http.service';
   providedIn: 'root',
 })
 export class UserService {
-  private uri: string = '/Users';
+  private uri: string = '/users';
 
   constructor(private httpService: HttpService) {}
 
   loginUser(data: any): Promise<any> {
     return this.httpService.postRequest(this.uri + '/login', data).toPromise();
+  }
+
+  getLoginUser(): Promise<any> {
+    return this.httpService.getRequest(this.uri + '/loginUser').toPromise();
   }
 }
