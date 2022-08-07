@@ -25,6 +25,14 @@ export class LoginPage implements OnInit {
     private router: Router
   ) {}
 
+  get username() {
+    return this.loginForm.get('username');
+  }
+
+  get password() {
+    return this.loginForm.get('password');
+  }
+
   ngOnInit() {
     if (this.tokenService.checkToken() === true) {
       this.router.navigate(['']);
@@ -65,13 +73,5 @@ export class LoginPage implements OnInit {
       username: '',
       password: '',
     });
-  }
-
-  get username() {
-    return this.loginForm.get('username');
-  }
-
-  get password() {
-    return this.loginForm.get('password');
   }
 }
