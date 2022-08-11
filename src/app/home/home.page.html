@@ -65,11 +65,59 @@
     <ion-card-content> order </ion-card-content>
   </ion-card>
 
+  <ion-card color="success" href="#" routerLink="/tabs/food-and-drinks">
+    <ion-item color="success" href="#" lines="none">
+      <ion-icon
+        style="font-size: 36px"
+        name="fast-food-outline"
+        slot="start"
+      ></ion-icon>
+      <ion-label>
+        <h2 style="font-size: 20px">餐飲</h2>
+        <p>food and drinks</p>
+      </ion-label>
+    </ion-item>
+  </ion-card>
+
+  <ion-card color="danger" href="#" routerLink="/tabs/set">
+    <ion-item color="danger" href="#" lines="none">
+      <ion-icon
+        style="font-size: 36px"
+        name="grid-outline"
+        slot="start"
+      ></ion-icon>
+      <ion-label>
+        <h2 style="font-size: 20px">套餐</h2>
+        <p>a set</p>
+      </ion-label>
+    </ion-item>
+  </ion-card>
+
+  <ion-card color="secondary" href="#" routerLink="/tabs/order">
+    <ion-item color="secondary" href="#" lines="none">
+      <ion-icon
+        style="font-size: 36px"
+        name="reorder-four-outline"
+        slot="start"
+      ></ion-icon>
+      <ion-label>
+        <h2 style="font-size: 20px">訂單</h2>
+        <p>order</p>
+      </ion-label>
+    </ion-item>
+  </ion-card>
+
   <ion-item lines="none" style="font-size: 14px; text-align: center">
     <ion-label class="ion-text-wrap">
       If you have any question, please email to
-      <span (click)="sendEmail()" *ngIf="!this.platform.is('desktop')">rockie2695@yahoo.com.hk</span>
-      <a href="mailto:rockie2695@yahoo.com.hk" *ngIf="this.platform.is('desktop')">rockie2695@yahoo.com.hk</a>
+      <span (click)="sendEmail()" *ngIf="!this.platform.is('desktop')"
+        >rockie2695@yahoo.com.hk</span
+      >
+      <a
+        href="mailto:rockie2695@yahoo.com.hk"
+        *ngIf="this.platform.is('desktop')"
+        >rockie2695@yahoo.com.hk</a
+      >
     </ion-label>
   </ion-item>
 </ion-content>
