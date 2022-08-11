@@ -24,8 +24,13 @@
     </ion-card-content>
   </ion-card>
 
-  <ion-card color="success" href="#">
-    <ion-item style="font-size: 20px" color="success" href="#">
+  <ion-card color="success" routerLink="/tabs/food-and-drinks">
+    <ion-item
+      style="font-size: 20px; border-bottom: 1px rgba(0, 0, 0, 0.1) solid"
+      color="success"
+      href="#"
+      lines="none"
+    >
       <ion-icon name="fast-food-outline" slot="start"></ion-icon>
       <ion-label>餐飲</ion-label>
     </ion-item>
@@ -33,8 +38,13 @@
     <ion-card-content> food and drinks </ion-card-content>
   </ion-card>
 
-  <ion-card color="danger" href="#">
-    <ion-item style="font-size: 20px" color="danger" href="#">
+  <ion-card color="danger" href="#" routerLink="/tabs/set">
+    <ion-item
+      style="font-size: 20px; border-bottom: 1px rgba(0, 0, 0, 0.1) solid"
+      color="danger"
+      href="#"
+      lines="none"
+    >
       <ion-icon name="grid-outline" slot="start"></ion-icon>
       <ion-label>套餐</ion-label>
     </ion-item>
@@ -42,17 +52,24 @@
     <ion-card-content> a set </ion-card-content>
   </ion-card>
 
-  <ion-card color="secondary" href="#">
-    <ion-item style="font-size: 20px" color="secondary" href="#">
+  <ion-card color="secondary" href="#" routerLink="/tabs/order">
+    <ion-item
+      style="font-size: 20px; border-bottom: 1px rgba(0, 0, 0, 0.1) solid"
+      color="secondary"
+      href="#"
+      lines="none"
+    >
       <ion-icon name="reorder-four-outline" slot="start"></ion-icon>
       <ion-label>訂單</ion-label>
     </ion-item>
     <ion-card-content> order </ion-card-content>
   </ion-card>
 
-  <ion-item>
+  <ion-item lines="none" style="font-size: 14px; text-align: center">
     <ion-label class="ion-text-wrap">
-      If you have any question, please email to rockie2695@yahoo.com.hk
+      If you have any question, please email to
+      <span (click)="sendEmail()" *ngIf="!this.platform.is('desktop')">rockie2695@yahoo.com.hk</span>
+      <a href="mailto:rockie2695@yahoo.com.hk" *ngIf="this.platform.is('desktop')">rockie2695@yahoo.com.hk</a>
     </ion-label>
   </ion-item>
 </ion-content>

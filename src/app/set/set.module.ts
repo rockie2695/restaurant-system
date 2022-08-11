@@ -1,19 +1,20 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
+
 import { IonicModule } from '@ionic/angular';
 
-import { HomePageRoutingModule } from './home-routing.module';
+import { SetPageRoutingModule } from './set-routing.module';
 
-import { HomePage } from './home.page';
+import { SetPage } from './set.page';
 
 @NgModule({
   imports: [
     CommonModule,
     FormsModule,
     IonicModule,
-    HomePageRoutingModule,
+    SetPageRoutingModule
   ],
-  declarations: [HomePage],
+  declarations: [SetPage]
 })
-export class HomePageModule {}
+export class SetPageModule {}

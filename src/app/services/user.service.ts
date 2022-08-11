@@ -5,7 +5,7 @@ import { HttpService } from './http.service';
   providedIn: 'root',
 })
 export class UserService {
-  private uri: string = '/users';
+  private uri = '/users';
 
   constructor(private httpService: HttpService) {}
 

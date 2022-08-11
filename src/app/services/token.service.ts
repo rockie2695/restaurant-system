@@ -15,13 +15,13 @@ export class TokenService {
   }
 
   checkToken(): boolean {
-    let token = localStorage.getItem('token');
-    let tomorrow = localStorage.getItem('time');
+    const token = localStorage.getItem('token');
+    const tomorrow = localStorage.getItem('time');
     if (token === null) {
       return false;
     }
 
-    if (Date.now() >= parseInt(tomorrow)) {
+    if (Date.now() >= parseInt(tomorrow, 10)) {
       return false;
     }
 
@@ -30,6 +30,6 @@ export class TokenService {
 
   clearToken(): void {
     localStorage.clear();
-    this.router.navigate(['/login']);
+    this.router.navigateByUrl('/login');
   }
 }

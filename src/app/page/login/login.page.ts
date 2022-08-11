@@ -3,6 +3,9 @@ import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { ToastController } from '@ionic/angular';
 import { Router } from '@angular/router';
 import { throwError } from 'rxjs';
+import { IonRouterOutlet, Platform } from '@ionic/angular';
+import { App } from '@capacitor/app';
+import { NavController } from '@ionic/angular';
 
 import { TokenService } from 'src/app/services/token.service';
 import { UserService } from 'src/app/services/user.service';
@@ -22,8 +25,17 @@ export class LoginPage implements OnInit {
     public toastController: ToastController,
     private userService: UserService,
     private tokenService: TokenService,
-    private router: Router
-  ) {}
+    private router: Router,
+    private platform: Platform,
+    private routerOutlet: IonRouterOutlet,
+    private navController: NavController
+  ) {
+    this.platform.backButton.subscribeWithPriority(-1, () => {
+      if (!this.routerOutlet.canGoBack()) {
+        App.exitApp();
+      }
+    });
+  }
 
   get username() {
     return this.loginForm.get('username');
@@ -35,7 +47,7 @@ export class LoginPage implements OnInit {
 
   ngOnInit() {
     if (this.tokenService.checkToken() === true) {
-      this.router.navigate(['']);
+      this.router.navigateByUrl('/tabs/home');
     }
   }
 
@@ -52,7 +64,9 @@ export class LoginPage implements OnInit {
     try {
       const response = await this.userService.loginUser(this.loginForm.value);
       this.tokenService.saveToken(response);
-      this.router.navigate(['']);
+      //this.router.navigateByUrl('/tabs/home');
+      //this.navController.navigateBack(['tabs/home']);
+      window.location.href = '/tabs/home';
     } catch (err) {
       if (err.status === 401) {
         this.clean();
@@ -62,6 +76,15 @@ export class LoginPage implements OnInit {
         });
         toast.present();
         return;
+      }
+
+      if (err.status === 0) {
+        this.clean();
+        const toast = await this.toastController.create({
+          message: 'server connection error',
+          duration: 2000,
+        });
+        toast.present();
       }
       console.log(err);
       return throwError(err);

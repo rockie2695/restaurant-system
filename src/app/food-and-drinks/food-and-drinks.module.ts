@@ -1,19 +1,20 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
+
 import { IonicModule } from '@ionic/angular';
 
-import { HomePageRoutingModule } from './home-routing.module';
+import { FoodAndDrinksPageRoutingModule } from './food-and-drinks-routing.module';
 
-import { HomePage } from './home.page';
+import { FoodAndDrinksPage } from './food-and-drinks.page';
 
 @NgModule({
   imports: [
     CommonModule,
     FormsModule,
     IonicModule,
-    HomePageRoutingModule,
+    FoodAndDrinksPageRoutingModule
   ],
-  declarations: [HomePage],
+  declarations: [FoodAndDrinksPage]
 })
-export class HomePageModule {}
+export class FoodAndDrinksPageModule {}
