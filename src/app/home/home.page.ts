@@ -30,10 +30,10 @@ export class HomePage implements OnInit {
   }
 
   async init() {
-    if (this.tokenService.checkToken() === false) {
+    /*if (this.tokenService.checkToken() === false) {
       this.tokenService.clearToken();
       return;
-    }
+    }*/
 
     const loading = await this.loadingController.create({
       message: 'connecting...',

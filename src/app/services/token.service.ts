@@ -21,7 +21,7 @@ export class TokenService {
       return false;
     }
 
-    if (Date.now() >= parseInt(tomorrow, 10)) {
+    if (tomorrow === null || Date.now() >= parseInt(tomorrow, 10)) {
       return false;
     }
 

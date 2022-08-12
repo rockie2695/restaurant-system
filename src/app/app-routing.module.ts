@@ -13,9 +13,8 @@ const routes: Routes = [
       import('./page/login/login.module').then((m) => m.LoginPageModule),
   },
   {
-    path: '',
+    path: '**',
     redirectTo: 'login',
-    pathMatch: 'full',
   },
  ];
 @NgModule({
